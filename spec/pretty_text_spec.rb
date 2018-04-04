@@ -2,6 +2,23 @@ require 'rails_helper'
 
 describe PrettyText do
 
+  it "can be disabled" do
+    SiteSetting.enable_markdown_footnotes = false
+
+    markdown = <<~MD
+      Here is a footnote, [^1]
+
+      [^1]: I am one
+    MD
+
+    html = <<~HTML
+      <p>Here is a footnote, [^1]</p>\n<p>[^1]: I am one</p>
+    HTML
+
+    cooked = PrettyText.cook markdown.strip
+    expect(cooked).to eq(html.strip)
+  end
+
   it "supports normal footnotes" do
     markdown = <<~MD
       Here is a footnote, [^1] and another. [^test]

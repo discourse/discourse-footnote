@@ -1,0 +1,4 @@
+plugins:
+  enable_markdown_footnotes:
+    default: true
+    client: true

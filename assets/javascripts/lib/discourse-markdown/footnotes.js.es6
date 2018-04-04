@@ -1,8 +1,8 @@
-import { registerOption } from 'pretty-text/pretty-text';
-
-registerOption((siteSettings, opts) => opts.features["footnote"] = true);
-
 export function setup(helper) {
+
+  helper.registerOptions((opts, siteSettings) => {
+    opts.features["footnotes"] = !!siteSettings.enable_markdown_footnotes;
+  });
 
   helper.whiteList([
     'ol.footnotes-list',

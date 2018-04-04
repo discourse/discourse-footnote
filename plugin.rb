@@ -3,6 +3,8 @@
 # version: 0.1
 # authors: Sam Saffron, Vitaly Puzrin
 
+enabled_site_setting :enable_markdown_footnotes
+
 register_asset "javascripts/vendor/markdown-it-footnote.js", :vendored_pretty_text
 
 DiscourseEvent.on(:before_post_process_cooked) do |doc, post|
