@@ -1,6 +1,31 @@
-# name: discourse-footnotes
-# about: Adds Markdown.it footnote support to Discourse
+# name: discourse-footnote
+# about: Adds markdown.it footnote support to Discourse
 # version: 0.1
-# authors: Sam Saffron
+# authors: Sam Saffron, Vitaly Puzrin
 
 register_asset "javascripts/vendor/markdown-it-footnote.js", :vendored_pretty_text
+
+DiscourseEvent.on(:before_post_process_cooked) do |doc, post|
+  doc.css('a.footnote-backref').each do |backref|
+    href = backref["href"] || ""
+    id = href[6..-1].to_i
+    backref["href"] = "#footnote-ref-#{post.id}-#{id}"
+  end
+
+  doc.css('sup.footnote-ref a').each do |ref|
+    href = ref["href"] || ""
+    id = href[3..-1].to_i
+    ref["href"] = "#footnote-#{post.id}-#{id}"
+
+    id = ref["id"] || ""
+    id = id[5..-1].to_i
+    ref["id"] = "footnote-ref-#{post.id}-#{id}"
+  end
+
+  doc.css('li.footnote-item').each do |li|
+    id = li["id"] || ""
+    id = id[2..-1].to_i
+
+    li["id"] = "footnote-#{post.id}-#{id}"
+  end
+end
