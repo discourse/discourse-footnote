@@ -53,6 +53,11 @@ function showFootnote() {
 }
 
 function inlineFootnotes($elem) {
+
+  if ($elem.hasClass('d-editor-preview')) {
+    return;
+  }
+
   $elem.find('sup.footnote-ref')
     .after('<button class="expand-footnote btn btn-icon no-text"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></btn>')
     .next()
