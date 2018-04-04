@@ -7,6 +7,8 @@ enabled_site_setting :enable_markdown_footnotes
 
 register_asset "javascripts/vendor/markdown-it-footnote.js", :vendored_pretty_text
 
+register_asset "stylesheets/footnotes.scss"
+
 DiscourseEvent.on(:before_post_process_cooked) do |doc, post|
   doc.css('a.footnote-backref').each do |backref|
     href = backref["href"] || ""
