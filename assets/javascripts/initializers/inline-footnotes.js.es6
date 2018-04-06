@@ -7,7 +7,14 @@ function showFootnote() {
 
   $('#footnote-tooltip').remove();
 
-  let pos = $(this).position();
+  let $elip = $(this);
+  let $post = $elip.offsetParent();
+
+  let pos = $elip.offset();
+  let delta = $post.offset();
+
+  pos.top -= delta.top;
+  pos.left -= delta.left;
 
   let retina = window.devicePixelRatio && window.devicePixelRatio > 1 ? "class='retina'" : "";
 
@@ -21,10 +28,10 @@ function showFootnote() {
     return true;
   });
 
+  let $tooltip = $('#footnote-tooltip');
+  $tooltip.css({top: 0, left: 0});
 
-  let tooltip = $('#footnote-tooltip');
-
-  let left = (pos.left - (tooltip.width() / 2) + $(this).width() + 6);
+  let left = (pos.left - ($tooltip.width() / 2) + $elip.width() + 3);
   if (left < 0) {
     $('#footnote-tooltip .footnote-tooltip-pointer').css({
       "margin-left": left*2 + "px"
@@ -33,17 +40,17 @@ function showFootnote() {
   }
 
   // also do a right margin fix
-  let topicWidth = $(this).closest('.topic-body').width();
-  if (left + tooltip.width() > topicWidth) {
+  let topicWidth = $post.width();
+  if (left + $tooltip.width() > topicWidth) {
     let oldLeft = left;
-    left = topicWidth - tooltip.width();
+    left = topicWidth - $tooltip.width();
 
     $('#footnote-tooltip .footnote-tooltip-pointer').css({
       "margin-left": (oldLeft - left) * 2 + "px"
     });
   }
 
-  tooltip.css({
+  $tooltip.css({
     top: pos.top + 5 + "px",
     left: left + "px",
     visibility: 'visible'

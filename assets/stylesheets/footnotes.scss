@@ -51,6 +51,7 @@ $footnote-tooltip-border: $primary-medium;
     border-width: 8px;
     left: 50%;
     margin-left: -8px;
+    margin-bottom: -0.5px;
   }
 
   .footnote-tooltip-pointer:before {
@@ -58,6 +59,7 @@ $footnote-tooltip-border: $primary-medium;
     border-width: 9px;
     left: 50%;
     margin-left: -9px;
+    margin-bottom: -0.5px;
   }
 
   .footnote-tooltip-content {
