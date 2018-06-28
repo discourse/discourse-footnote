@@ -1,10 +1,9 @@
 import { withPluginApi } from 'discourse/lib/plugin-api';
-import { escapeExpression } from "discourse/lib/utilities";
 
 function showFootnote() {
   let id = $(this).prev().find('a')[0].href;
   id = "#" + id.split('#')[1];
-  let html = escapeExpression($(id).html());
+  let html = $(id).html();
 
   $('#footnote-tooltip').remove();
 
