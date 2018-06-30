@@ -2,6 +2,7 @@
 # about: Adds markdown.it footnote support to Discourse
 # version: 0.1
 # authors: Sam Saffron, Vitaly Puzrin
+# url: https://github.com/discourse/discourse-footnote
 
 enabled_site_setting :enable_markdown_footnotes
 
