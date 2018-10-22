@@ -1,9 +1,7 @@
-
 $footnote-tooltip-background: $secondary;
 $footnote-tooltip-border: $primary-medium;
 
 .inline-footnotes {
-
   button.expand-footnote {
     padding: 0px 8px;
     margin: 0 4px;
@@ -11,10 +9,12 @@ $footnote-tooltip-border: $primary-medium;
     border-radius: 5px;
   }
 
-  .footnote-ref, .footnotes-sep, .footnotes-list, .footnote-backref {
+  .footnote-ref,
+  .footnotes-sep,
+  .footnotes-list,
+  .footnote-backref {
     display: none;
   }
-
 
   #footnote-tooltip {
     background-color: $footnote-tooltip-background;
@@ -35,7 +35,8 @@ $footnote-tooltip-border: $primary-medium;
     background: $secondary;
   }
 
-  .footnote-tooltip-pointer:before, .footnote-tooltip-pointer:after {
+  .footnote-tooltip-pointer:before,
+  .footnote-tooltip-pointer:after {
     position: absolute;
     pointer-events: none;
     border: solid transparent;
@@ -45,8 +46,7 @@ $footnote-tooltip-border: $primary-medium;
     width: 0;
   }
 
-  .footnote-tooltip-pointer:after
-  {
+  .footnote-tooltip-pointer:after {
     border-bottom-color: $footnote-tooltip-background;
     border-width: 8px;
     left: 50%;
