@@ -1,4 +1,5 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
+import { iconHTML } from "discourse-common/lib/icon-library";
 
 function showFootnote() {
   let id = $(this)
@@ -78,7 +79,9 @@ function inlineFootnotes($elem) {
   $elem
     .find("sup.footnote-ref")
     .after(
-      '<button class="expand-footnote btn btn-icon no-text"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></btn>'
+      `<button class="expand-footnote btn btn-icon no-text">${iconHTML(
+        "ellipsis-h"
+      )}</btn>`
     )
     .next()
     .on("click", showFootnote);
