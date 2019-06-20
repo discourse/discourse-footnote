@@ -98,9 +98,12 @@ export default {
     }
 
     withPluginApi("0.8.9", api => {
-      api.decorateCooked($elem => {
-        inlineFootnotes($elem);
-      });
+      api.decorateCooked(
+        $elem => {
+          inlineFootnotes($elem);
+        },
+        { id: "inline-footnotes" }
+      );
     });
   }
 };
