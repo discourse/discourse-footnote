@@ -1,11 +1,14 @@
-$footnote-tooltip-background: $secondary;
-$footnote-tooltip-border: $primary-medium;
+$footnote-tooltip-background: var(--secondary, $secondary);
+$footnote-tooltip-border: var(--primary-medium, $primary-medium);
 
 .inline-footnotes {
   button.expand-footnote {
     padding: 0px 8px;
     margin: 0 4px;
-    color: dark-light-choose($primary-low-mid, $secondary-high);
+    color: var(
+      --primary-low-mid-or-secondary-high,
+      dark-light-choose($primary-low-mid, $secondary-high)
+    );
     border-radius: 5px;
   }
 
@@ -32,7 +35,7 @@ $footnote-tooltip-border: $primary-medium;
 
   .footnote-tooltip-pointer {
     position: relative;
-    background: $secondary;
+    background: var(--secondary, $secondary);
   }
 
   .footnote-tooltip-pointer:before,
@@ -65,7 +68,7 @@ $footnote-tooltip-border: $primary-medium;
   .footnote-tooltip-content {
     padding: 0 0.5em;
     font-size: 0.93em;
-    color: $primary-medium;
+    color: var(--primary-medium, $primary-medium);
     line-height: 1.4em;
   }
 }
