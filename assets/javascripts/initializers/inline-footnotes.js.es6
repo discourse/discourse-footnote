@@ -6,7 +6,10 @@ function showFootnote() {
     .prev()
     .find("a")[0].href;
   id = "#" + id.split("#")[1];
-  let html = $(this).parents(".cooked").find(id).html();
+  let html = $(this)
+    .parents(".cooked")
+    .find(id)
+    .html();
 
   $("#footnote-tooltip").remove();
 
