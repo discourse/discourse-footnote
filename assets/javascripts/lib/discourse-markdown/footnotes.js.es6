@@ -8,7 +8,7 @@ export function setup(helper) {
     "hr.footnotes-sep",
     "li.footnote-item",
     "a.footnote-backref",
-    "sup.footnote-ref"
+    "sup.footnote-ref",
   ]);
 
   helper.whiteList({
@@ -16,7 +16,7 @@ export function setup(helper) {
       if ((tag === "a" || tag === "li") && name === "id") {
         return !!value.match(/^fn(ref)?\d+$/);
       }
-    }
+    },
   });
 
   helper.registerPlugin(window.markdownitFootnote);

@@ -2,14 +2,9 @@ import { withPluginApi } from "discourse/lib/plugin-api";
 import { iconHTML } from "discourse-common/lib/icon-library";
 
 function showFootnote() {
-  let id = $(this)
-    .prev()
-    .find("a")[0].href;
+  let id = $(this).prev().find("a")[0].href;
   id = "#" + id.split("#")[1];
-  let html = $(this)
-    .parents(".cooked")
-    .find(id)
-    .html();
+  let html = $(this).parents(".cooked").find(id).html();
 
   $("#footnote-tooltip").remove();
 
@@ -35,7 +30,7 @@ function showFootnote() {
       "</div></div>"
   );
 
-  $(window).on("click.footnote", e => {
+  $(window).on("click.footnote", (e) => {
     if ($(e.target).closest("#footnote-tooltip").length === 0) {
       $("#footnote-tooltip").remove();
       $(window).off("click.footnote");
@@ -49,7 +44,7 @@ function showFootnote() {
   let left = pos.left - $tooltip.width() / 2 + $elip.width() + 3;
   if (left < 0) {
     $("#footnote-tooltip .footnote-tooltip-pointer").css({
-      "margin-left": left * 2 + "px"
+      "margin-left": left * 2 + "px",
     });
     left = 0;
   }
@@ -61,14 +56,14 @@ function showFootnote() {
     left = topicWidth - $tooltip.width();
 
     $("#footnote-tooltip .footnote-tooltip-pointer").css({
-      "margin-left": (oldLeft - left) * 2 + "px"
+      "margin-left": (oldLeft - left) * 2 + "px",
     });
   }
 
   $tooltip.css({
     top: pos.top + 5 + "px",
     left: left + "px",
-    visibility: "visible"
+    visibility: "visible",
   });
 
   return false;
@@ -100,13 +95,13 @@ export default {
       return;
     }
 
-    withPluginApi("0.8.9", api => {
+    withPluginApi("0.8.9", (api) => {
       api.decorateCooked(
-        $elem => {
+        ($elem) => {
           inlineFootnotes($elem);
         },
         { id: "inline-footnotes" }
       );
     });
-  }
+  },
 };
