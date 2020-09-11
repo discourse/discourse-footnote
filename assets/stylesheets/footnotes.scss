@@ -3,13 +3,14 @@ $footnote-tooltip-border: var(--primary-medium, $primary-medium);
 
 .inline-footnotes {
   button.expand-footnote {
-    padding: 0px 8px;
-    margin: 0 4px;
+    padding: 0px 0.5em;
+    margin: 0 0 0 0.25em;
     color: var(
       --primary-low-mid-or-secondary-high,
       dark-light-choose($primary-low-mid, $secondary-high)
     );
-    border-radius: 5px;
+    border-radius: 3px;
+    min-height: 20px;
 
     .d-icon {
       pointer-events: none;
@@ -21,11 +22,15 @@ $footnote-tooltip-border: var(--primary-medium, $primary-medium);
   .footnotes-list {
     position: absolute;
   }
-  .footnote-ref,
+
   .footnotes-sep,
   .footnotes-list,
   .footnote-backref {
     visibility: hidden;
+  }
+
+  .footnote-ref {
+    display: none;
   }
 }
 
