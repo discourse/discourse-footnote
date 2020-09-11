@@ -76,7 +76,7 @@ $footnote-tooltip-border: var(--primary-medium, $primary-medium);
   }
 
   .footnote-tooltip-content {
-    padding: 0 0.5em;
+    border: 5px solid var(--secondary, $secondary);
     font-size: 0.93em;
     color: var(--primary-medium, $primary-medium);
     line-height: 1.4em;
@@ -84,8 +84,8 @@ $footnote-tooltip-border: var(--primary-medium, $primary-medium);
     min-width: 100px;
 
     img {
-      width: 100%;
       object-fit: cover;
+      max-width: 385px;
     }
 
     .footnote-backref {
