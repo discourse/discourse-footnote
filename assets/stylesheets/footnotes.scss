@@ -10,27 +10,38 @@ $footnote-tooltip-border: var(--primary-medium, $primary-medium);
       dark-light-choose($primary-low-mid, $secondary-high)
     );
     border-radius: 5px;
+
+    .d-icon {
+      pointer-events: none;
+    }
   }
 
+  // This is hack to work with lazy-loading, we will trick the browser
+  // to believe the image is in the DOM and can be loaded
+  .footnotes-list {
+    position: absolute;
+  }
   .footnote-ref,
   .footnotes-sep,
   .footnotes-list,
   .footnote-backref {
+    visibility: hidden;
+  }
+}
+
+#footnote-tooltip {
+  background-color: $footnote-tooltip-background;
+  z-index: z("tooltip");
+  border: 1px solid $footnote-tooltip-border;
+  max-width: 400px;
+  overflow-wrap: break-word;
+
+  &:not(.is-expanded) {
     display: none;
   }
 
-  #footnote-tooltip {
-    background-color: $footnote-tooltip-background;
-    position: absolute;
-    z-index: 1000;
-    border: 1px solid $footnote-tooltip-border;
-    max-width: 400px;
-    margin-top: 27px;
-    overflow-wrap: break-word;
-    visibility: hidden;
-    &.retina {
-      border: 0.5px solid $footnote-tooltip-border;
-    }
+  &.retina {
+    border: 0.5px solid $footnote-tooltip-border;
   }
 
   .footnote-tooltip-pointer {
@@ -62,7 +73,6 @@ $footnote-tooltip-border: var(--primary-medium, $primary-medium);
     border-width: 9px;
     left: 50%;
     margin-left: -9px;
-    margin-bottom: -0.5px;
   }
 
   .footnote-tooltip-content {
@@ -70,5 +80,14 @@ $footnote-tooltip-border: var(--primary-medium, $primary-medium);
     font-size: 0.93em;
     color: var(--primary-medium, $primary-medium);
     line-height: 1.4em;
+    overflow: hidden;
+
+    img {
+      object-fit: cover;
+    }
+
+    .footnote-backref {
+      display: none;
+    }
   }
 }

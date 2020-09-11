@@ -1,90 +1,86 @@
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { iconHTML } from "discourse-common/lib/icon-library";
 
-function showFootnote() {
-  let id = $(this).prev().find("a")[0].href;
-  id = "#" + id.split("#")[1];
-  let html = $(this).parents(".cooked").find(id).html();
+let inlineFootnotePopper;
 
-  $("#footnote-tooltip").remove();
+function createTooltip() {
+  const tooltip = document.createElement("div");
+  tooltip.id = "footnote-tooltip";
 
-  let $elip = $(this);
-  let $post = $elip.offsetParent();
-
-  let pos = $elip.offset();
-  let delta = $post.offset();
-
-  pos.top -= delta.top;
-  pos.left -= delta.left;
-
-  let retina =
-    window.devicePixelRatio && window.devicePixelRatio > 1
-      ? "class='retina'"
-      : "";
-
-  $(this).after(
-    "<div id='footnote-tooltip' " +
-      retina +
-      "><div class='footnote-tooltip-pointer'></div><div class='footnote-tooltip-content'>" +
-      html +
-      "</div></div>"
-  );
-
-  $(window).on("click.footnote", (e) => {
-    if ($(e.target).closest("#footnote-tooltip").length === 0) {
-      $("#footnote-tooltip").remove();
-      $(window).off("click.footnote");
-    }
-    return true;
-  });
-
-  let $tooltip = $("#footnote-tooltip");
-  $tooltip.css({ top: 0, left: 0 });
-
-  let left = pos.left - $tooltip.width() / 2 + $elip.width() + 3;
-  if (left < 0) {
-    $("#footnote-tooltip .footnote-tooltip-pointer").css({
-      "margin-left": left * 2 + "px",
-    });
-    left = 0;
+  if (window.devicePixelRatio && window.devicePixelRatio > 1) {
+    tooltip.classList.add("retina");
   }
 
-  // also do a right margin fix
-  let topicWidth = $post.width();
-  if (left + $tooltip.width() > topicWidth) {
-    let oldLeft = left;
-    left = topicWidth - $tooltip.width();
+  const pointer = document.createElement("div");
+  pointer.classList.add("footnote-tooltip-pointer");
+  tooltip.append(pointer);
 
-    $("#footnote-tooltip .footnote-tooltip-pointer").css({
-      "margin-left": (oldLeft - left) * 2 + "px",
-    });
-  }
+  const content = document.createElement("div");
+  content.classList.add("footnote-tooltip-content");
+  tooltip.append(content);
 
-  $tooltip.css({
-    top: pos.top + 5 + "px",
-    left: left + "px",
-    visibility: "visible",
-  });
+  document.body.append(tooltip);
 
-  return false;
+  return tooltip;
 }
 
-function inlineFootnotes($elem) {
-  if ($elem.hasClass("d-editor-preview")) {
+function showFootnote(event) {
+  inlineFootnotePopper && inlineFootnotePopper.destroy();
+
+  let tooltip = document.querySelector("#footnote-tooltip");
+
+  tooltip && tooltip.classList.remove("is-expanded");
+
+  if (!event.target.classList.contains("expand-footnote")) {
     return;
   }
 
-  $elem
-    .find("sup.footnote-ref")
-    .after(
-      `<button class="expand-footnote btn btn-icon no-text">${iconHTML(
-        "ellipsis-h"
-      )}</btn>`
-    )
-    .next()
-    .on("click", showFootnote);
+  const button = event.target;
+  const cooked = button.closest(".cooked");
 
-  $elem.addClass("inline-footnotes");
+  tooltip = tooltip || createTooltip();
+  tooltip.classList.add("is-expanded");
+
+  const footnoteId = button.dataset.footnoteId;
+  const footnoteContent = tooltip.querySelector(".footnote-tooltip-content");
+  const newContent = cooked.querySelector(`#footnote-${footnoteId}`);
+  footnoteContent.innerHTML = newContent.innerHTML;
+
+  // eslint-disable-next-line
+  inlineFootnotePopper = new Popper.createPopper(button, tooltip, {
+    modifiers: [
+      {
+        name: "offset",
+        options: {
+          offset: [0, 12],
+        },
+      },
+    ],
+  });
+}
+
+function inlineFootnotes(elem) {
+  const footnoteRefs = elem.querySelectorAll("sup.footnote-ref");
+
+  footnoteRefs.forEach((footnoteRef) => {
+    const button = document.createElement("button");
+    button.classList.add("expand-footnote", "btn", "btn-icon", "no-text");
+    button.innerHTML = iconHTML("ellipsis-h");
+    button.dataset.footnoteId = footnoteRef
+      .querySelector("a")
+      .id.replace("footnote-ref-", "");
+
+    footnoteRef.after(button);
+  });
+
+  if (footnoteRefs.length) {
+    elem.classList.add("inline-footnotes");
+  }
+}
+
+function clearPopper() {
+  inlineFootnotePopper && inlineFootnotePopper.destroy();
+  inlineFootnotePopper = null;
 }
 
 export default {
@@ -96,12 +92,28 @@ export default {
     }
 
     withPluginApi("0.8.9", (api) => {
-      api.decorateCooked(
-        ($elem) => {
-          inlineFootnotes($elem);
-        },
-        { id: "inline-footnotes" }
-      );
+      api.decorateCookedElement((elem) => inlineFootnotes(elem), {
+        onlyStream: true,
+        id: "inline-footnotes",
+      });
+
+      api.cleanupStream(() => clearPopper);
     });
+
+    const main = document.querySelector("#main");
+
+    if (main) {
+      main.addEventListener("click", showFootnote);
+    }
+  },
+
+  teardown() {
+    const main = document.querySelector("#main");
+
+    if (main) {
+      main.removeEventListener("click", showFootnote);
+    }
+
+    clearPopper();
   },
 };
