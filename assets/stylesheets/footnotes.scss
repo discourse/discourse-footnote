@@ -81,6 +81,7 @@ $footnote-tooltip-border: var(--primary-medium, $primary-medium);
     color: var(--primary-medium, $primary-medium);
     line-height: 1.4em;
     overflow: hidden;
+    min-width: 100px;
 
     img {
       width: 100%;
