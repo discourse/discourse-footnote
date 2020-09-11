@@ -83,6 +83,7 @@ $footnote-tooltip-border: var(--primary-medium, $primary-medium);
     overflow: hidden;
 
     img {
+      width: 100%;
       object-fit: cover;
     }
 
