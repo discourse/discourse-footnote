@@ -3,7 +3,7 @@ export function setup(helper) {
     opts.features["footnotes"] = !!siteSettings.enable_markdown_footnotes;
   });
 
-  helper.whiteList([
+  helper.allowList([
     "ol.footnotes-list",
     "hr.footnotes-sep",
     "li.footnote-item",
@@ -11,7 +11,7 @@ export function setup(helper) {
     "sup.footnote-ref",
   ]);
 
-  helper.whiteList({
+  helper.allowList({
     custom(tag, name, value) {
       if ((tag === "a" || tag === "li") && name === "id") {
         return !!value.match(/^fn(ref)?\d+$/);
