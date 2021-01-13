@@ -2,7 +2,7 @@
 
 Official footnotes Discourse plugin
 
-Based off: [https://github.com/markdown-it/markdown-it-footnote](github.com/markdown-it/markdown-it-footnote)
+Based off: [github.com/markdown-it/markdown-it-footnote](https://github.com/markdown-it/markdown-it-footnote)
 
 See: []()
 
