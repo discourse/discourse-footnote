@@ -1,5 +1,5 @@
-$footnote-tooltip-background: var(--secondary, $secondary);
-$footnote-tooltip-border: var(--primary-medium, $primary-medium);
+$footnote-tooltip-background: var(--secondary);
+$footnote-tooltip-border: var(--primary-medium);
 
 .inline-footnotes {
   button.expand-footnote {
@@ -51,7 +51,7 @@ $footnote-tooltip-border: var(--primary-medium, $primary-medium);
 
   .footnote-tooltip-pointer {
     position: relative;
-    background: var(--secondary, $secondary);
+    background: var(--secondary);
   }
 
   .footnote-tooltip-pointer:before,
@@ -81,9 +81,9 @@ $footnote-tooltip-border: var(--primary-medium, $primary-medium);
   }
 
   .footnote-tooltip-content {
-    border: 5px solid var(--secondary, $secondary);
+    border: 5px solid var(--secondary);
     font-size: 0.93em;
-    color: var(--primary-medium, $primary-medium);
+    color: var(--primary-medium);
     line-height: 1.4em;
     overflow: hidden;
     min-width: 100px;
