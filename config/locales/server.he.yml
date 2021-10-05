@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 he:
+  site_settings:
+    enable_markdown_footnotes: הפעלת הערות שוליים ב־Markdown באתר הזה
+    display_footnotes_inline: הפעלת הרחבה בתוך השורה של הערות שוליים
