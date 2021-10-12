@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 sv:
+  site_settings:
+    enable_markdown_footnotes: aktivera markdown för fotnot på denna webbplats
+    display_footnotes_inline: aktivera infogad expansion av fotnoter
