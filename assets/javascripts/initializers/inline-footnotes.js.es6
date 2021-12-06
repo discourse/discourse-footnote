@@ -1,3 +1,4 @@
+import { createPopper } from "@popperjs/core";
 import { withPluginApi } from "discourse/lib/plugin-api";
 import { iconHTML } from "discourse-common/lib/icon-library";
 
@@ -25,7 +26,7 @@ function createTooltip() {
 }
 
 function showFootnote(event) {
-  inlineFootnotePopper && inlineFootnotePopper.destroy();
+  inlineFootnotePopper?.destroy();
 
   let tooltip = document.querySelector("#footnote-tooltip");
 
@@ -47,7 +48,7 @@ function showFootnote(event) {
   footnoteContent.innerHTML = newContent.innerHTML;
 
   // eslint-disable-next-line
-  inlineFootnotePopper = new Popper.createPopper(button, tooltip, {
+  inlineFootnotePopper = createPopper(button, tooltip, {
     modifiers: [
       {
         name: "offset",
@@ -79,7 +80,7 @@ function inlineFootnotes(elem) {
 }
 
 function clearPopper() {
-  inlineFootnotePopper && inlineFootnotePopper.destroy();
+  inlineFootnotePopper?.destroy();
   inlineFootnotePopper = null;
 }
 
