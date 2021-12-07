@@ -8,14 +8,16 @@ function applyInlineFootnotes(elem) {
   const footnoteRefs = elem.querySelectorAll("sup.footnote-ref");
 
   footnoteRefs.forEach((footnoteRef) => {
-    const button = document.createElement("button");
-    button.classList.add("expand-footnote", "btn", "btn-icon", "no-text");
-    button.innerHTML = iconHTML("ellipsis-h");
-    button.dataset.footnoteId = footnoteRef
+    const expandableFootnote = document.createElement("a");
+    expandableFootnote.classList.add("expand-footnote");
+    expandableFootnote.innerHTML = iconHTML("ellipsis-h");
+    expandableFootnote.href = "";
+    expandableFootnote.role = "button";
+    expandableFootnote.dataset.footnoteId = footnoteRef
       .querySelector("a")
       .id.replace("footnote-ref-", "");
 
-    footnoteRef.after(button);
+    footnoteRef.after(expandableFootnote);
   });
 
   if (footnoteRefs.length) {
@@ -44,19 +46,20 @@ function footNoteEventHandler(event) {
 
   // reset state by hidding tooltip, it handles "click outside"
   // allowing to hide the tooltip when you click anywhere else
-  if (tooltip) {
-    tooltip.removeAttribute("data-show");
-  }
+  tooltip?.removeAttribute("data-show");
 
   // if we didn't actually click a footnote button, exit early
   if (!event.target.classList.contains("expand-footnote")) {
     return;
   }
 
+  event.preventDefault();
+  event.stopPropagation();
+
   // append footnote to tooltip body
-  const button = event.target;
-  const cooked = button.closest(".cooked");
-  const footnoteId = button.dataset.footnoteId;
+  const expandableFootnote = event.target;
+  const cooked = expandableFootnote.closest(".cooked");
+  const footnoteId = expandableFootnote.dataset.footnoteId;
   const footnoteContent = tooltip.querySelector(".footnote-tooltip-content");
   const newContent = cooked.querySelector(`#footnote-${footnoteId}`);
   footnoteContent.innerHTML = newContent.innerHTML;
@@ -70,11 +73,18 @@ function footNoteEventHandler(event) {
 
   // setup popper
   inlineFootnotePopper?.destroy();
-  inlineFootnotePopper = createPopper(button, tooltip, {
+  inlineFootnotePopper = createPopper(expandableFootnote, tooltip, {
     modifiers: [
       {
         name: "arrow",
         options: { element: tooltip.querySelector("#arrow") },
+      },
+      {
+        name: "preventOverflow",
+        options: {
+          altAxis: true,
+          padding: 5,
+        },
       },
       {
         name: "offset",
