@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+# transpile_js: true
 # name: discourse-footnote
 # about: Adds markdown.it footnote support to Discourse
 # version: 0.1
