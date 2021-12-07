@@ -8,7 +8,7 @@
 
 enabled_site_setting :enable_markdown_footnotes
 
-register_asset "javascripts/vendor/markdown-it-footnote.js", :vendored_pretty_text
+register_asset "vendor/javascripts/markdown-it-footnote.js", :vendored_pretty_text
 
 register_asset "stylesheets/footnotes.scss"
 
