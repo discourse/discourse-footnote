@@ -2,7 +2,7 @@
 # transpile_js: true
 # name: discourse-footnote
 # about: Adds markdown.it footnote support to Discourse
-# version: 0.1
+# version: 0.2
 # authors: Sam Saffron, Vitaly Puzrin
 # url: https://github.com/discourse/discourse-footnote
 

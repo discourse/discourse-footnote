@@ -212,6 +212,15 @@ module.exports = function footnote_plugin(md) {
         tokens = []
       );
 
+      // Having a rendered footnote inside a link creates a nested link, which
+      // is not valid HTML, so close the parent tag first before proceeding.
+      const previousToken = state.tokens[state.tokens.length - 1];
+      if (previousToken?.content.includes("<a")) {
+        const linkCloseToken = state.push("html_inline", "", 0);
+        linkCloseToken.content = "</a>";
+        linkCloseToken.block = false;
+      }
+
       token      = state.push('footnote_ref', '', 0);
       token.meta = { id: footnoteId };
 
