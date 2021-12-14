@@ -8,14 +8,20 @@ function applyInlineFootnotes(elem) {
   const footnoteRefs = elem.querySelectorAll("sup.footnote-ref");
 
   footnoteRefs.forEach((footnoteRef) => {
+    const refLink = footnoteRef.querySelector("a");
+    if (!refLink) {
+      return;
+    }
+
     const expandableFootnote = document.createElement("a");
     expandableFootnote.classList.add("expand-footnote");
     expandableFootnote.innerHTML = iconHTML("ellipsis-h");
     expandableFootnote.href = "";
     expandableFootnote.role = "button";
-    expandableFootnote.dataset.footnoteId = footnoteRef
-      .querySelector("a")
-      .id.replace("footnote-ref-", "");
+    expandableFootnote.dataset.footnoteId = refLink.id.replace(
+      "footnote-ref-",
+      ""
+    );
 
     footnoteRef.after(expandableFootnote);
   });
