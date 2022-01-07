@@ -67,7 +67,17 @@ function footNoteEventHandler(event) {
   const cooked = expandableFootnote.closest(".cooked");
   const footnoteId = expandableFootnote.dataset.footnoteId;
   const footnoteContent = tooltip.querySelector(".footnote-tooltip-content");
-  const newContent = cooked.querySelector(`#footnote-${footnoteId}`);
+  let newContent = cooked.querySelector(`#footnote-${footnoteId}`);
+  if (!newContent) {
+    // when we're in an encrypted PM, the elements we need don't have the IDs
+    // that are added by the server-side processor (see plugin.rb).
+    //
+    // so we have to work with the original IDs that the markdown-it library
+    // adds which isn't great because if multiple posts include footnotes then
+    // we'll have some elements in the DOM with identical IDs...
+    const id = footnoteId.match(/^fnref(\d+)$/)[1];
+    newContent = cooked.querySelector(`#fn${id}`);
+  }
   footnoteContent.innerHTML = newContent.innerHTML;
 
   // remove backref from tooltip
