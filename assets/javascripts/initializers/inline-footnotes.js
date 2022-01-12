@@ -129,6 +129,12 @@ export default {
         onlyStream: true,
         id: "inline-footnotes",
       });
+
+      api.onPageChange(() => {
+        document
+          .getElementById("footnote-tooltip")
+          ?.removeAttribute("data-show");
+      });
     });
   },
 
