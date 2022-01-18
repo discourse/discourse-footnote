@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 ar:
+  site_settings:
+    enable_markdown_footnotes: تفعيل تنسيق Markdown في الحاشية السفلية على هذا الموقع
+    display_footnotes_inline: تفعيل التوسيع المضمَّن للحواشي السفلية
