@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 it:
+  site_settings:
+    enable_markdown_footnotes: abilita markdown nelle note a piè di pagina su questo sito
+    display_footnotes_inline: consenti l'espansione inline delle note a piè di pagina
