@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 fi:
+  site_settings:
+    enable_markdown_footnotes: ota käyttöön alaviitteiden merkintä tällä sivustolla
+    display_footnotes_inline: ota käyttöön alaviitteiden rivilaajennus
