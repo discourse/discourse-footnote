@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 ja:
+  site_settings:
+    enable_markdown_footnotes: このサイトで脚注マークダウンを有効にする
+    display_footnotes_inline: 脚注のインライン展開を有効にする
