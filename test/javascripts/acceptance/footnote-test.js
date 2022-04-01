@@ -38,7 +38,7 @@ acceptance("Discourse Foonote Plugin", function (needs) {
 
     assert.equal(
       tooltip.querySelector(".footnote-tooltip-content").innerText,
-      "consectetur adipiscing elit"
+      "consectetur adipiscing elit ↩︎"
     );
   });
 
@@ -52,7 +52,7 @@ acceptance("Discourse Foonote Plugin", function (needs) {
 
     assert.equal(
       tooltip.querySelector(".footnote-tooltip-content").innerText,
-      "consectetur adipiscing elit"
+      "consectetur adipiscing elit ↩︎"
     );
   });
 });
