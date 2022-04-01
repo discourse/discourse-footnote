@@ -18,10 +18,7 @@ function applyInlineFootnotes(elem) {
     expandableFootnote.innerHTML = iconHTML("ellipsis-h");
     expandableFootnote.href = "";
     expandableFootnote.role = "button";
-    expandableFootnote.dataset.footnoteId = refLink.id.replace(
-      "footnote-ref-",
-      ""
-    );
+    expandableFootnote.dataset.footnoteId = refLink.getAttribute("href");
 
     footnoteRef.after(expandableFootnote);
   });
@@ -67,22 +64,9 @@ function footNoteEventHandler(event) {
   const cooked = expandableFootnote.closest(".cooked");
   const footnoteId = expandableFootnote.dataset.footnoteId;
   const footnoteContent = tooltip.querySelector(".footnote-tooltip-content");
-  let newContent = cooked.querySelector(`#footnote-${footnoteId}`);
-  if (!newContent) {
-    // when we're in an encrypted PM, the elements we need don't have the IDs
-    // that are added by the server-side processor (see plugin.rb).
-    //
-    // so we have to work with the original IDs that the markdown-it library
-    // adds which isn't great because if multiple posts include footnotes then
-    // we'll have some elements in the DOM with identical IDs...
-    const id = footnoteId.match(/^fnref(\d+)$/)[1];
-    newContent = cooked.querySelector(`#fn${id}`);
-  }
-  footnoteContent.innerHTML = newContent.innerHTML;
+  let newContent = cooked.querySelector(footnoteId);
 
-  // remove backref from tooltip
-  const backRef = footnoteContent.querySelector(".footnote-backref");
-  backRef.parentNode.removeChild(backRef);
+  footnoteContent.innerHTML = newContent.innerHTML;
 
   // display tooltip
   tooltip.dataset.show = "";

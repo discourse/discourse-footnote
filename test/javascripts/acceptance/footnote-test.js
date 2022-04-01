@@ -16,6 +16,7 @@ acceptance("Discourse Foonote Plugin", function (needs) {
       let topic = cloneJSON(topicFixtures["/t/28830/1.json"]);
       topic["post_stream"]["posts"][0]["cooked"] = `
         <p>Lorem ipsum dolor sit amet<sup class="footnote-ref"><a href="#footnote-17-1" id="footnote-ref-17-1">[1]</a></sup></p>
+        <p class="second">Second reference should also work. <sup class="footnote-ref"><a href="#footnote-17-1" id="footnote-ref-17-0">[1]</a></sup></p>
         <hr class="footnotes-sep">
         <ol class="footnotes-list">
           <li id="footnote-17-1" class="footnote-item">
@@ -35,8 +36,23 @@ acceptance("Discourse Foonote Plugin", function (needs) {
 
     await click(".expand-footnote");
 
-    const tooltipContent = tooltip.querySelector(".footnote-tooltip-content")
-      .innerText;
-    assert.equal(tooltipContent, "consectetur adipiscing elit");
+    assert.equal(
+      tooltip.querySelector(".footnote-tooltip-content").innerText,
+      "consectetur adipiscing elit"
+    );
+  });
+
+  test("clicking a second footnote with same name works", async function (assert) {
+    await visit("/t/45");
+
+    const tooltip = document.getElementById("footnote-tooltip");
+    assert.ok(exists(tooltip));
+
+    await click(".second .expand-footnote");
+
+    assert.equal(
+      tooltip.querySelector(".footnote-tooltip-content").innerText,
+      "consectetur adipiscing elit"
+    );
   });
 });
