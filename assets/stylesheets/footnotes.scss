@@ -52,6 +52,10 @@
   .footnote-tooltip-content {
     overflow: hidden;
 
+    .footnote-backref {
+      display: none;
+    }
+
     img {
       object-fit: cover;
       max-width: 385px;
