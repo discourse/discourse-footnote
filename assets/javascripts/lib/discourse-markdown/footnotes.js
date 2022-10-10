@@ -1,6 +1,7 @@
 export function setup(helper) {
   helper.registerOptions((opts, siteSettings) => {
-    opts.features["footnotes"] = !!siteSettings.enable_markdown_footnotes;
+    opts.features["footnotes"] =
+      window.markdownitFootnote && !!siteSettings.enable_markdown_footnotes;
   });
 
   helper.allowList([
@@ -19,5 +20,7 @@ export function setup(helper) {
     },
   });
 
-  helper.registerPlugin(window.markdownitFootnote);
+  if (window.markdownitFootnote) {
+    helper.registerPlugin(window.markdownitFootnote);
+  }
 }
