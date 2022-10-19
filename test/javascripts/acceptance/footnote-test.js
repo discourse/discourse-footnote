@@ -35,9 +35,8 @@ acceptance("Discourse Foonote Plugin", function (needs) {
     assert.ok(exists(tooltip));
 
     await click(".expand-footnote");
-
     assert.equal(
-      tooltip.querySelector(".footnote-tooltip-content").innerText,
+      tooltip.querySelector(".footnote-tooltip-content").textContent.trim(),
       "consectetur adipiscing elit ↩︎"
     );
   });
@@ -51,7 +50,7 @@ acceptance("Discourse Foonote Plugin", function (needs) {
     await click(".second .expand-footnote");
 
     assert.equal(
-      tooltip.querySelector(".footnote-tooltip-content").innerText,
+      tooltip.querySelector(".footnote-tooltip-content").textContent.trim(),
       "consectetur adipiscing elit ↩︎"
     );
   });
