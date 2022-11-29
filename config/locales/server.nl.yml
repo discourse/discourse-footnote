@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 nl:
+  site_settings:
+    enable_markdown_footnotes: voetnootmarkdown inschakelen op deze site
+    display_footnotes_inline: inline uitbreiding van voetnoten inschakelen
