@@ -25,6 +25,10 @@
   .footnotes-list,
   .footnotes-sep {
     position: absolute;
+    // the left/right positioning prevents overflow issues
+    // with long words causing overflow on small screens
+    left: 0;
+    right: 0;
   }
 
   .footnotes-sep,
