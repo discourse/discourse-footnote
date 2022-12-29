@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 describe PrettyText do
-  before do
-    SiteSetting.queue_jobs = false
-  end
+  before { SiteSetting.queue_jobs = false }
 
   it "can be disabled" do
     SiteSetting.enable_markdown_footnotes = false
@@ -84,7 +82,6 @@ describe PrettyText do
     HTML
 
     expect(post.cooked.strip).to eq(html.strip)
-
   end
 
   it "supports inline footnotes wrapped in <a> elements by ending the elements early" do
