@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 tr_TR:
+  site_settings:
+    enable_markdown_footnotes: bu sitede dipnot işaretlemeyi etkinleştirin
+    display_footnotes_inline: dipnotların satır içi genişletilmesini etkinleştirin
