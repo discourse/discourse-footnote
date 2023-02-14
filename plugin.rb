@@ -14,7 +14,7 @@ register_asset "stylesheets/footnotes.scss"
 
 register_svg_icon "ellipsis-h" if respond_to?(:register_svg_icon)
 
-DiscourseEvent.on(:before_post_process_cooked) do |doc, post|
+on(:before_post_process_cooked) do |doc, post|
   doc
     .css("a.footnote-backref")
     .each do |backref|
