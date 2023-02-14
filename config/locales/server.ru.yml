@@ -6,5 +6,5 @@
 
 ru:
   site_settings:
-    enable_markdown_footnotes: включить footnote markdown на этом сайте
-    display_footnotes_inline: включить встроенное расширение footnote
+    enable_markdown_footnotes: Включить Markdown для сносок на этом сайте
+    display_footnotes_inline: Включить встроенное расширение сносок
