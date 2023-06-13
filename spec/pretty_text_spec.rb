@@ -39,11 +39,9 @@ describe PrettyText do
       <hr class="footnotes-sep">
 
       <ol class="footnotes-list">
-      <li id="fn1" class="footnote-item">
-      <p>I am one <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+      <li id="fn1" class="footnote-item"><p>I am one <a href="#fnref1" class="footnote-backref">↩︎</a></p>
       </li>
-      <li id="fn2" class="footnote-item">
-      <p>I am one <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+      <li id="fn2" class="footnote-item"><p>I am one <a href="#fnref2" class="footnote-backref">↩︎</a></p>
       </li>
       </ol>
     HTML
@@ -72,11 +70,9 @@ describe PrettyText do
       <hr class="footnotes-sep">
 
       <ol class="footnotes-list">
-      <li id="footnote-#{post.id}-1" class="footnote-item">
-      <p>I am one <a href="#footnote-ref-#{post.id}-1" class="footnote-backref">↩︎</a></p>
+      <li id="footnote-#{post.id}-1" class="footnote-item"><p>I am one <a href="#footnote-ref-#{post.id}-1" class="footnote-backref">↩︎</a></p>
       </li>
-      <li id="footnote-#{post.id}-2" class="footnote-item">
-      <p>I am one <a href="#footnote-ref-#{post.id}-2" class="footnote-backref">↩︎</a></p>
+      <li id="footnote-#{post.id}-2" class="footnote-item"><p>I am one <a href="#footnote-ref-#{post.id}-2" class="footnote-backref">↩︎</a></p>
       </li>
       </ol>
     HTML
@@ -100,11 +96,9 @@ describe PrettyText do
       <hr class="footnotes-sep">
 
       <ol class="footnotes-list">
-      <li id="footnote-#{post.id}-1" class="footnote-item">
-      <p>the point <a href="#footnote-ref-#{post.id}-1" class="footnote-backref">↩︎</a></p>
+      <li id="footnote-#{post.id}-1" class="footnote-item"><p>the point <a href="#footnote-ref-#{post.id}-1" class="footnote-backref">↩︎</a></p>
       </li>
-      <li id="footnote-#{post.id}-2" class="footnote-item">
-      <p>footnote <a href="#footnote-ref-#{post.id}-2" class="footnote-backref">↩︎</a></p>
+      <li id="footnote-#{post.id}-2" class="footnote-item"><p>footnote <a href="#footnote-ref-#{post.id}-2" class="footnote-backref">↩︎</a></p>
       </li>
       </ol>
     HTML
