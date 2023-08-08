@@ -5,3 +5,6 @@
 # https://translate.discourse.org/
 
 pl_PL:
+  site_settings:
+    enable_markdown_footnotes: włącz markdown dla przypisów na tej stronie
+    display_footnotes_inline: włącz wbudowane rozszerzenie przypisów
