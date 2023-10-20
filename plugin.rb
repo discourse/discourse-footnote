@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 # transpile_js: true
 # name: discourse-footnote
-# about: Adds markdown.it footnote support to Discourse
+# about: Allows users to create markdown footnotes in posts.
+# meta_topic_id: 84533
 # version: 0.2
 # authors: Sam Saffron, Vitaly Puzrin
 # url: https://github.com/discourse/discourse-footnote
